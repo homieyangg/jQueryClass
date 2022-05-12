@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab02</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    table {
+      border: 2px solid black;
+      width: 400px;
+      height: 400px;
+      margin: 10 auto;
+    }
+
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  ,<header>
+    <h1>Basic Selector</h1>
+  </header>
+  <div class="contanier">
+    <table>
+      <tr>
+        <td>1</td>
+        <td class="not">2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td class="not">1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td class="not">3</td>
+      </tr>
+    </table>
+    <ul id="list">
+      <li>list item</li>
+      <li>list item</li>
+      <li class="not">list item</li>
+      <li>list item</li>
+      <li>list item</li>
+    </ul>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facilis nihil maiores necessitatibus atque distinctio libero laborum sapiente ea perferendis error autem qui, ducimus officiis voluptate nesciunt quaerat odit minus!</p>
+    <p>Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam facilis nihil maiores necessitatibus atque distinctio libero laborum sapiente ea perferendis error autem qui, ducimus officiis voluptate nesciunt quaerat odit minus!</p>
+    <p><span>EEIT45</span> ipsum dolor sit amet consectetur adipisicing elit. Veniam facilis nihil maiores necessitatibus atque distinctio libero laborum sapiente ea perferendis error autem qui, ducimus officiis voluptate nesciunt quaerat odit minus!</p>
+    <p></p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      //filetering
+      $('li').eq(2).css('background','pink')
+      $('li').first().css('background','lightgreen')
+      $('li').last().css('background','lightblue')
+      $('li').not('.not').css('background','red')
+      //child filter
+      /*
+      $('tr td:first-child').css('background','lightgreen')
+      $('tr td:last-child').css('background','lightblue')
+      //:nth-child(n) n從1開始
+      $('tr td:nth-child(2)').css('background','lightyellow')
+      $('tr td:only-child').css('background','black')
+      */
+
+
+
+      //content filter
+      $('p:contains("Hello")').css('background','pink')
+      $('p:has(span)').css('background','lightgreen')
+      $('p:parent').css('background','red')
+      $('p:empty').text('empty text')
+      
+      //basic selector
+      let all = $('*')
+      // console.log(all)
+      let table = $('table')
+      // console.log(table)
+      let countainer = $('.container')
+      // console.log(countainer)
+
+      //basic filter
+      //:eq(n) n從0開始算
+      /*
+      $('td:eq(1)').css('background', 'pink')
+      $('li:eq(1)').css('background', 'pink')
+      //even 單數
+      $('td:even').css('background', 'lightgreen')
+      $('li:even').css('background', 'lightgreen')
+      //odd 雙數
+      $('td:odd').css('background', 'lightblue')
+      $('li:odd').css('background', 'lightblue')
+     
+      // lt<3
+      $('td:lt(3)').css('background', 'greenyellow')
+      // gt>5
+      $('td:gt(5)').css('background', 'blue')
+      $('td:first').css('background', 'white')
+      $('td:last').css('background', 'black')
+      $('td:not(.not)').css('background','red')
+      */
+    })
+  </script>
+</body>
+
+</html>

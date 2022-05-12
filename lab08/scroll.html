@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab08</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .con {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+      /* 溢出內容 */
+      overflow: auto;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+    }
+    .progress{
+      background-color: lightgray;
+      position: fixed;
+      width: 100%;
+      height: 30px;
+      top: 0;
+      left: 0;
+    }
+    .progress-percent{
+      background-color: lightblue;
+      height: 30px;
+      width: 0%;
+    }
+    body{
+      /* view hight */
+      height: 300vh;
+    }
+    #btn{
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Scroll</h1>
+  </header>
+  <div class="contanier">
+    <div class="progress">
+      <div class="progress-percent"></div>
+    </div>
+    <div class="con">
+      <div class="box"></div>
+    </div>
+    <button id="btn"></button>
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      $('#btn').click(function(){
+        $(window).scrollTop(0)
+      })
+      let bodyH=$('body').height()
+      let windowH=$(window).height()
+      $(window).scroll(function(){
+        let windowNow=$(this).scrollTop();
+        let scrollPercent= Math.round((windowNow/(bodyH-windowH))*100)+'%'
+        $('.progress-percent').css('width',scrollPercent)
+
+      })
+      $('.con').scroll(function () {
+        console.log(`scrolltop:${$(this).scrollTop()},scrollleft:${$(this).scrollLeft()}`)
+      })
+
+      /*
+        目前高度
+        --------
+        body高度-視窗高度
+      */
+
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab10</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>text html val</h1>
+  </header>
+  <div class="contanier">
+    <h3 id="source">Hello jQuery</h3>
+    <h3 id="target"></h3>
+    <button id="getText">get text</button>
+    <button id="setText">set text</button>
+    <hr>
+    <p>
+      <b>click</b> to change the <span>html</span>
+    </p>
+    <hr>
+    <input type="number" id="num1">
+    <select id="calculate">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <input type="number" id="num2">
+    <button id="result">=</button>
+    <input type="text" value="0" id="show" readonly>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      //  text()
+      let getText = "";
+      $('#getText').on('click', function () {
+        getText = $('#source').text()
+
+      })
+      $('#setText').on('click', function () {
+        $('#target').text(getText)
+      })
+      //  html()
+      $('p').one('click', function () {
+        let string = $('p').html()
+        $(this).text(string)
+      })
+      // val()
+      // Number(xxx.val()) 轉型
+      $('#result').on('click',function(){
+        let num1=Number($('#num1').val())
+        let num2=Number($('#num2').val())
+        let calculate=$('#calculate').val()
+        // console.log(num1+num2+calculate)
+        let result=0
+        switch(calculate){
+          case "+":
+            result = num1 + num2;
+            break
+          case "-":
+            result = num1 - num2;
+            break
+          case "*":
+            result = num1 * num2;
+            break
+          case "/":
+            result = num1 / num2;
+            break;  
+        }
+        console.log(result)
+        $('#show').val(result)
+      })
+
+
+    })
+  </script>
+</body>
+
+</html>
