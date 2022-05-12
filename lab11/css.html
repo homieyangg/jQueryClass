@@ -12,6 +12,9 @@
       border: 1px solid black;
       width: 100px;
       height: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
     .circle {
@@ -19,6 +22,15 @@
       height: 50px;
       border-radius: 50%;
       display: inline-block;
+    }
+
+    .wrap {
+      width: 800px;
+      height: 400px;
+      border: 2px solid black;
+      background-color: lightgray;
+      margin: 0 auto;
+      position: relative;
     }
   </style>
 </head>
@@ -28,7 +40,9 @@
     <h1>css</h1>
   </header>
   <div class="contanier">
-    <div class="target"></div>
+    <div class="wrap">
+      <div class="target"></div>
+    </div>
     <br>
     <div class="circle" style="background-color: red"></div>
     <div class="circle" style="background-color: orange"></div>
@@ -37,11 +51,73 @@
     <div class="circle" style="background-color: blue"></div>
     <div class="circle" style="background-color: blueviolet"></div>
     <div class="circle" style="background-color: purple"></div>
+    <br>
+    <input type="text" id="test">
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script>
     $(function () {
-
+      $('.circle').on('click', function () {
+        console.log($(this).css('background'))
+        let color = $(this).css('background')
+        $('.target').css('background', color)
+      })
+      $('#test').keyup(function () {
+        console.log(event.keyCode)
+      })
+      document.onkeyup = function move() {
+        switch (event.keyCode) {
+          case 40:
+            if (parseInt($('.target').css('top')) < 300) {
+              $('.target').css({
+                top: '+=' + 20,
+                background: 'lightgreen'
+              })
+            } else {
+              $('.target').css('top', 300)
+            }
+            break;
+          case 38:
+            if ((parseInt($('.target').css('top')) > 0)) {
+              $('.target').css({
+                top: '-=' + 20,
+                background: 'lightblue'
+              })
+            } else {
+              $('.target').css('top', 0)
+            }
+            break;
+          case 37:
+            if (parseInt($('.target').css('left')) > 0) {
+              $('.target').css({
+                left: '-=' + 20,
+                background: 'lightyellow'
+              })
+            } else {
+              $('.target').css('left', 0)
+            }
+            break;
+          case 39:
+            if (parseInt($('.target').css('left')) < 700){
+              $('.target').css({
+                left: '+=' + 20,
+                background: 'lightcoral'
+              })
+            }else{
+              $('.target').css('left',700)
+            }
+            break;
+        }
+      }
+      /*
+      38 40
+      37 39
+      */
+      // $('.target').css({
+      //   top:20,
+      //   left:20,
+      //   background:'red'
+      // })
 
 
     })
