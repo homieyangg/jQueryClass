@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab12</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/fontawesome-free-6.1.1-web/css/all.css">
+  <style>
+    .wrapper {
+      width: 800px;
+      height: 400px;
+      background-color: black;
+      margin: 0 auto;
+      position: relative;
+      /* 溢出內容 */
+      overflow: hidden;
+    }
+
+    .slide-imgs {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      position: absolute;
+      display: flex;
+      width: 4000px;
+      /* left: -800px; */
+      transition: .5s;
+    }
+
+    .slide-imgs li {
+      width: 800px;
+      height: 400px;
+    }
+
+    .slide-imgs li img {
+      width: 100%;
+      height: 100%;
+      /* 控制元素內容填入大小比例 */
+      object-fit: cover;
+    }
+
+    .pages {
+      position: absolute;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      bottom: 10px;
+      display: flex;
+      /* 主軸對齊 */
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pages li {
+      border: 1px solid white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin: 0 5px;
+    }
+
+    .pages-arrow {
+      position: absolute;
+      z-index: 1;
+      font-size: 36px;
+      width: 40px;
+      height: 100%;
+      color: rgb(255, 255, 255);
+      display: flex;
+      align-items: center;
+      opacity: .6;
+      cursor: pointer;
+    }
+
+    .right {
+      right: 0;
+    }
+    .pages-arrow:hover{
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Slide</h1>
+  </header>
+  <div class="contanier">
+    <div class="wrapper">
+      <a class="pages-arrow" id="slidePrev"><i class="fa-solid fa-angle-left"></i></a>
+      <a class="pages-arrow right" id="slideNext"><i class="fa-solid fa-angle-right"></i></a>
+      <ul class="slide-imgs">
+        <li><img src="/lab12/imgs/slide1.jpg" alt=""></li>
+        <li><img src="/lab12/imgs/slide2.jpg" alt=""></li>
+        <li><img src="/lab12/imgs/slide3.jpg" alt=""></li>
+        <li><img src="/lab12/imgs/slide4.jpg" alt=""></li>
+        <li><img src="/lab12/imgs/slide5.jpg" alt=""></li>
+      </ul>
+      <ul class="pages" id="pages">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      /*
+      1.框先定位
+      2.放第一張圖
+      3.放n張圖
+      4.換頁
+      5.第一張圖移動
+      6.N張圖移動 index() 取索引值
+      7.換頁變色
+      8.放左右箭頭
+      9.下一頁
+      10.上一頁
+      */
+      let index = 0
+      let slideMove = 0
+      $('#pages li').eq(0).css('background', 'white')
+      $('#pages li').on('mouseenter', function () {
+        // console.log('123')
+        // $('.slide-imgs').css('left', '-800px')
+        index = $(this).index()
+        // console.log(index)
+        // slideMove = 0 - index * 800
+        // $('.slide-imgs').css('left', slideMove)
+        // $(this).css('background', 'white')
+        //   .siblings().css('background', 'transparent')
+        moveImg()
+      })
+      let pagesli = $('.pages li').length
+      // console.log(pagesli)
+      $('#slideNext').on('click', function () {
+        // console.log('next')
+        index++
+        if (index >= pagesli) {
+          index = 0
+        }
+        slideMove = 0 - index * 800
+        // $('.slide-imgs').css('left', slideMove)
+        // $('#pages li').eq(index).css('background', 'white')
+        //   .siblings().css('background', 'transparent')
+        moveImg()
+      })
+      $('#slidePrev').on('click', function () {
+        index--
+        if (index < 0) {
+          index = pagesli -1
+        }
+        moveImg()
+      })
+      function moveImg(){
+        slideMove = 0 - index * 800
+        $('.slide-imgs').css('right', slideMove)
+        $('#pages li').eq(index).css('background', 'white')
+          .siblings().css('background', 'transparent')
+      }
+      setInterval(autoImg,2000)
+      function autoImg(){
+        index++
+        if (index >= pagesli) {
+          index = 0
+        }
+        moveImg()
+      }
+    })
+  </script>
+</body>
+
+</html>

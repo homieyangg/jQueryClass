@@ -8,13 +8,18 @@
   <title>lab11</title>
   <link rel="stylesheet" href="/style.css">
   <style>
-    table{
+    table {
       border: 2px solid black;
       width: 500px;
       margin: 10px;
     }
-    tr{
+
+    tr {
       text-align: center;
+    }
+
+    tr.active {
+      background-color: lightblue;
     }
   </style>
 </head>
@@ -58,9 +63,34 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script>
     $(function () {
-
-
-
+      let content = $('.content').length
+      // console.log(content)
+      $('.checkbox').on('click', function () {
+        // console.log('123')
+        let checked = $(this).prop('checked')
+        // console.log(checked)
+        if (checked) {
+          $(this).closest('tr').addClass('active')
+        } else {
+          $(this).closest('tr').removeClass('active')
+        }
+        let checkContent=$('tr.active').length
+        // console.log(checkContent)
+        if(checkContent==content){
+          $('#checkAll').prop('checked',true)
+        }else{
+          $('#checkAll').prop('checked',false)
+        }
+      })
+      $('#checkAll').on('click',function(){
+        if($(this).prop('checked')){
+          $('.content :checkbox').prop('checked',true)
+          .closest('tr').addClass('active')
+        }else{
+          $('.content :checkbox').prop('checked',false)
+          .closest('tr').removeClass('active')
+        }
+      })
     })
   </script>
 </body>

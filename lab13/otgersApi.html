@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab13</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>each inArray map grep</h1>
+  </header>
+  <div class="contanier">
+    <table>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+    </table>
+      <hr>
+      <button class="btn" data-name="stephen curry" data-team="warriors" data-age="34">stephen curry</button>
+      <button class="btn" data-name="shohei ohtani" data-team="angels" data-age="27">shohei ohtani</button>
+      <br>
+      <div class="target"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      //each()
+      let arr = ['Gary', 'ispan', 'EEIT45', 'F204']
+      $.each(arr, function (index, ele) {
+        // console.log(ele)
+      })
+      let sum = 0;
+      $('td').each(function () {
+        // console.log($(this).text())
+        sum += Number($(this).text())
+      })
+      // console.log(sum)
+      // inArray() 回傳你陣列的索引值
+      // 沒找到會出現-1
+      let arr1 = ['9', '5', '4', 3, 2, 1]
+      console.log($.inArray(7, arr1))
+      console.log($.inArray('9', arr1))
+
+      //grep() 回傳設定的條件資料資料回傳
+      arr2 = $.grep(arr1, function (item, index) {
+        return (item % 2 == 0)
+      })
+      console.log(arr2)
+      //map() 逐筆讀資料回傳陣列
+      arr3 = $.map(arr1, function (item, index) {
+        return item * index
+      })
+      console.log(arr3)
+
+      // data()
+      $('.btn').on('click', function () {
+        let name = $(this).data('name'), team = $(this).data('team'), age = $(this).data('age')
+        $('.target').text(`${name} age is ${age} and team is ${team}`)
+      })
+    })
+  </script>
+</body>
+
+</html>

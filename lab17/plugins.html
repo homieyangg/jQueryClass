@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab17</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lab17/js/lightbox2-dev/dist/css/lightbox.css">
+  <link rel="stylesheet" href="/lab17/js/vegas2.5.4/vegas.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+  <style>
+    img {
+      width: 400px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>dmeo</h1>
+  </header>
+  <div class="contanier">
+    <a href="/lab12/imgs/slide1.jpg" data-lightbox="roadtrip"><img src="/lab12/imgs/slide1.jpg" alt=""></a>
+    <a href="/lab12/imgs/slide2.jpg" data-lightbox="roadtrip"><img src="/lab12/imgs/slide2.jpg" alt=""></a>
+    <a href="/lab12/imgs/slide3.jpg" data-lightbox="roadtrip"><img src="/lab12/imgs/slide3.jpg" alt=""></a>
+    <hr>
+    <button id="btn">alert</button>
+    <hr>
+    <table id="table_id" class="display">
+      <thead>
+          <tr>
+              <th>Column 1</th>
+              <th>Column 2</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>Row 1 Data 1</td>
+              <td>Row 1 Data 2</td>
+          </tr>
+          <tr>
+              <td>Row 2 Data 1</td>
+              <td>Row 2 Data 2</td>
+          </tr>
+      </tbody>
+  </table>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="/lab17/js/lightbox2-dev/dist/js/lightbox.js"></script>
+  <script src="/lab17/js/vegas2.5.4/vegas.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(function () {
+      $('#table_id').DataTable();
+      $('#btn').on('click', function () {
+        Swal.fire(
+          'The Internet?',
+          'That thing is still around?',
+          'question'
+        )
+      })
+      $("#example, body").vegas({
+        slides: [
+          { src: "/lab12/imgs/slide1.jpg" },
+          { src: "/lab12/imgs/slide2.jpg" },
+          { src: "/lab12/imgs/slide3.jpg" },
+          { src: "/lab12/imgs/slide4.jpg" }
+        ],
+        transition: ['fade', 'zoomOut', 'swirlLeft']
+      });
+
+
+    })
+  </script>
+</body>
+
+</html>

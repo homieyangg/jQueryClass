@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab14</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+
+    .box1:hover {
+      width: 300px;
+      transition: 2s;
+      border-radius: 50%;
+      transition-delay: 1s;
+    }
+
+    .box2 {
+      width: 100px;
+      height: 100px;
+      background-color: greenyellow;
+      animation-name: example;
+      animation-duration: 4s;
+    }
+
+    @keyframes example {
+      from {
+        background-color: greenyellow;
+      }
+
+      to {
+        background-color: RED;
+        width: 300px;
+        border-radius: 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Transition</h1>
+  </header>
+  <div class="contanier">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3" style="width: 100px;height: 100px;background-color:lightgreen"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+      let box3 = document.querySelector('.box3')
+      box3.addEventListener('click',function(){
+        window.setInterval(show,1000)
+        function show(){
+          let box3_width = parseInt(box3.style.width)+5
+          if(box3_width >= 300){
+            window.clearInterval(t)
+          }
+          box3.style.width = box3_width+"px"
+        }
+      })
+
+
+    })
+  </script>
+</body>
+
+</html>

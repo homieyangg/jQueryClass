@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lab15</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>animate</h1>
+  </header>
+  <div class="contanier">
+    <button id="moveRight">move right</button>
+    <button id="moveLeft">move Left</button>
+    <button id="moveAround">move Around</button>
+    <button id="moveSwing">move swing</button>
+    <hr>
+    <div class="box"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script>
+    $(function () {
+
+      $('#moveRight').on('click', function () {
+        $('.box').animate({
+          left: 500,
+          widgt: 300,
+          height: 300
+        }, 1000)
+      })
+      $('#moveLeft').on('click', function () {
+        $('.box').animate({
+          left: 0,
+          width: 100,
+          height: 100
+        }, 500)
+      })
+      $('#moveAround').on('click', function () {
+        $('.box').animate({
+          left: 300
+        }).animate({
+          top: 300
+        }).animate({
+          left: 0,
+          top: 300
+        }).animate({
+          left: 0,
+          top: 0
+        })
+      })
+      $('#moveSwing').on('click', function () {
+        $('.box').animate({
+          left: 500,
+          top: 500
+        }, {
+          duration: 1000,
+          specialEasing: {
+            top: 'linear',
+            left: 'swing'
+          }
+        }).animate({
+          left: 0,
+          top: 0
+        }, {
+          duration: 500,
+          specialEasing: {
+            top: 'linear',
+            left: 'swing'
+          }
+        })
+      })
+
+    })
+  </script>
+</body>
+
+</html>
